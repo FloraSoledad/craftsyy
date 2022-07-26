@@ -1,23 +1,30 @@
 const express = require('express');
-const path = require('path');
-const { index } = require('./controllers/indexController');
 const port = 3030;
-
 const app = express();
-const indexController = require('./controllers/indexController');
-const productController = require('./controllers/productController');
-const userController = require('./controllers/userController');
+
+
+const indexRouter = require('./routes/index');
+const productRouter = require('./routers/index');
+const userRouter = require('./routes/user');
 
 app.use(express.static('public'));
 
+/* rutas */
+app.use('/',indexRouter);
+app.use('/products', productRouter);
+app.use('/users', userRouter);
 
-app.get('/', indexController.index);
+app.listen(port, () => console.log('Server running in http://localhost:' + port))
+
+
+
+/* app.get('/', indexController.index);
 app.get('/product-detail', productController.detail); 
 app.get('/register', userController.register);
 app.get('/login', userController.login);
-app.get('/profile', userController.profile);
+app.get('/profile', userController.profile); */
 
-app.listen(port, () => console.log('Server running in http://localhost:' + port))
+
 
 
 
